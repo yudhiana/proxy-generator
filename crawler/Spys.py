@@ -1,3 +1,5 @@
+#!/usr/bin/python2.7
+# -*- coding: utf-8 -*-
 from helper.logger import Logger
 from helper.extras import get_html, parser, proxy_checker, save_proxy
 

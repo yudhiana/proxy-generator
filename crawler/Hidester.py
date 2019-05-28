@@ -1,10 +1,8 @@
-import os
+#!/usr/bin/python2.7
+# -*- coding: utf-8 -*-
 import requests
 from helper.extras import save_proxy, proxy_checker
 from helper.logger import Logger
-
-current_path = os.path.dirname(os.path.abspath(__file__))
-root = os.path.join(current_path, os.pardir)
 
 class Hidester:
     def __init__(self):
