@@ -8,6 +8,7 @@ __pycache__/
 
 #IDE
 .idea
+*.json
 
 # Distribution / packaging
 .Python
