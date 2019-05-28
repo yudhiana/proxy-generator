@@ -78,6 +78,5 @@ def proxy_checker(proxys):
             if response.status_code == 200:
                 logger.log('ready proxy: {}'.format(proxies))
                 result.append(proxy)
-        except :
-            pass
+        except : pass
     return result
