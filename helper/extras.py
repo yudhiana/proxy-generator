@@ -50,8 +50,10 @@ def bs4_parser(html, selector):
 
 
 def save_proxy(proxies=None, type='global'):
+    location = '{}/json-proxy/'.format(root)
+    os.mkdir(location)
     if proxies:
-        file_name = '{}/json-proxy/proxy_{}.json'.format(root, type)
+        file_name = '{}proxy_{}.json'.format(location, type)
         try:
             with open(file_name, 'w') as outfile:
                 dump(proxies, outfile, indent=4)
