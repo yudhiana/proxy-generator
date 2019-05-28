@@ -57,6 +57,7 @@ def save_proxy(proxies=None, type='global'):
         try:
             with open(file_name, 'w') as outfile:
                 dump(proxies, outfile, indent=4)
+            logger.log('FILE HAS CREATED ON -> {}'.format(file_name))
         except Exception as e:
             raise e
 
