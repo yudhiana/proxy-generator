@@ -1,5 +1,5 @@
 # Proxy Generator
-proxy generator for a make file froxy
+proxy generator for a make file proxy
 
 ### Usage
 To run it :
