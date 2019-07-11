@@ -50,7 +50,12 @@ def bs4_parser(html, selector):
     return result
 
 
+<<<<<<< HEAD
 def save_proxy(proxies=None, location='/home/ipd-crawler/src/proxy'):
+=======
+def save_proxy(proxies=None, type='global'):
+    location = '{}/json-proxy/'.format(root)
+>>>>>>> e54d2bf57d70dd0c82667e0d2bddf6908c75bda3
     if not os.path.exists(location):
         os.makedirs(location)
     if proxies:
