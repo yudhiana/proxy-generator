@@ -1,7 +1,9 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
+
 from helper.logger import Logger
 from helper.extras import get_html, parser, proxy_checker, save_proxy
+
 
 class Spys:
     def __init__(self):
@@ -19,23 +21,19 @@ class Spys:
         }
 
     def proxy_parser(self, html):
-        ip = port = ''
         result = []
         try:
             tables = parser(html, self.selector['table'])
             for table in tables:
                 ip = parser(table, self.selector['ip']).remove('script').text()
                 port = 8080
-                result.append({'address':ip, 'port':port})
+                result.append({'address': ip, 'port': port})
         except Exception as e:
             self.logger.log(msg=str(e), level='error')
         return result
 
-
     def main(self):
         html = get_html(self.baseUrl, headers=self.headers, payloads=self.payload)
-        checker  = self.proxy_parser(html)
+        checker = self.proxy_parser(html)
         self.logger.log('get {} proxies'.format(len(checker)))
-        proxies = proxy_checker(proxys=checker)
-        save_proxy(proxies, type='https')
-
+        save_proxy(proxy_checker(proxys=checker))

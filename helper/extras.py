@@ -10,7 +10,6 @@ from helper.logger import Logger
 current_path = os.path.dirname(os.path.abspath(__file__))
 root = os.path.abspath(os.path.join(current_path, os.pardir))
 
-
 logger = Logger(__name__)
 
 
@@ -51,13 +50,11 @@ def bs4_parser(html, selector):
     return result
 
 
-def save_proxy(proxies=None, type='global'):
-    location = '{}/json-proxy/'.format(root)
-    try:
-        os.mkdir(location)
-    except: pass
+def save_proxy(proxies=None, location='/home/ipd-crawler/src/proxy'):
+    if not os.path.exists(location):
+        os.makedirs(location)
     if proxies:
-        file_name = '{}proxy_{}.json'.format(location, type)
+        file_name = os.path.join(location, 'proxy_https.json')
         try:
             with open(file_name, 'w') as outfile:
                 dump(proxies, outfile, indent=4)
@@ -78,5 +75,6 @@ def proxy_checker(proxys):
             if response.status_code == 200:
                 logger.log('ready proxy: {}'.format(proxies))
                 result.append(proxy)
-        except : pass
+        except:
+            pass
     return result

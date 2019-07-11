@@ -1,7 +1,9 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
+
 from helper.logger import Logger
 from helper.extras import parser, get_html, save_proxy, proxy_checker
+
 
 class Proxy_list:
     def __init__(self):
@@ -16,7 +18,6 @@ class Proxy_list:
         }
 
     def proxy_parser(self, html):
-        ip = port = type = ''
         result = []
         try:
             table = parser(html, self.selector['table'])
@@ -29,8 +30,8 @@ class Proxy_list:
                     port = parser(proxy, self.selector['port']).text()
                     type = parser(proxy, self.selector['type']).text().lower()
                     if type == 'yes':
-                        tmp['address']= ip
-                        tmp['port']=port
+                        tmp['address'] = ip
+                        tmp['port'] = port
                         result.append(tmp)
         except Exception as e:
             self.logger.log(str(e), level='error')
@@ -40,5 +41,4 @@ class Proxy_list:
         html = get_html(Proxy_list().baseUrl)
         checker = self.proxy_parser(html)
         self.logger.log('get {} proxies'.format(len(checker)))
-        proxies = proxy_checker(checker)
-        save_proxy(proxies, type='https')
+        save_proxy(proxy_checker(checker))
