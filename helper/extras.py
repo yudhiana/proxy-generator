@@ -51,7 +51,7 @@ def bs4_parser(html, selector):
 
 
 def save_proxy(proxies=None, location=False):
-    default = '/home/ipd-crawler/src/proxy'
+    default = '/home'
     location = default if not location else location
     if not os.path.exists(location):
         os.makedirs(location)
