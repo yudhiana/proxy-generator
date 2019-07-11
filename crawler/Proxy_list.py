@@ -37,8 +37,8 @@ class Proxy_list:
             self.logger.log(str(e), level='error')
         return result
 
-    def main(self):
+    def main(self, path):
         html = get_html(Proxy_list().baseUrl)
         checker = self.proxy_parser(html)
         self.logger.log('get {} proxies'.format(len(checker)))
-        save_proxy(proxy_checker(checker))
+        save_proxy(proxies=proxy_checker(checker), location=path)

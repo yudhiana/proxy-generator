@@ -43,8 +43,8 @@ class Hidester:
             raise e
         return results
 
-    def main(self):
+    def main(self, path):
         html_dict = self.get_data()
         checker = self.proxy_parser(html_dict)
         self.logger.log('get {} proxies'.format(len(checker)))
-        save_proxy(proxy_checker(checker))
+        save_proxy(proxies=proxy_checker(checker), location=path)

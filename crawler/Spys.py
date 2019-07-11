@@ -32,8 +32,8 @@ class Spys:
             self.logger.log(msg=str(e), level='error')
         return result
 
-    def main(self):
+    def main(self, path):
         html = get_html(self.baseUrl, headers=self.headers, payloads=self.payload)
         checker = self.proxy_parser(html)
         self.logger.log('get {} proxies'.format(len(checker)))
-        save_proxy(proxy_checker(proxys=checker))
+        save_proxy(proxies=proxy_checker(checker), location=path)
