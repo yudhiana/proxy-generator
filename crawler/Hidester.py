@@ -4,6 +4,7 @@ import requests
 from helper.extras import save_proxy, proxy_checker
 from helper.logger import Logger
 
+
 class Hidester:
     def __init__(self):
         self.logger = Logger(name=self.__class__.__name__)
@@ -35,19 +36,15 @@ class Hidester:
         results = []
         try:
             for result in data:
-                result['address']=result['IP']
+                result['address'] = result['IP']
                 result['port'] = result['PORT']
                 results.append(result)
         except Exception as e:
             raise e
         return results
 
-
-
-    def main(self):
+    def main(self, path):
         html_dict = self.get_data()
         checker = self.proxy_parser(html_dict)
         self.logger.log('get {} proxies'.format(len(checker)))
-        proxies = proxy_checker(checker)
-        save_proxy(proxies, type='http')
-
+        save_proxy(proxies=proxy_checker(checker), location=path)
